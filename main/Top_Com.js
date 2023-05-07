@@ -38,7 +38,7 @@ const Top_Com = function ({ navigation, data }) {
 
           /*
           var re_data = '';
-          axios.get(`http://192.168.45.191:3000/product/${data._id}`)
+          axios.get(`http://192.168.45.251:3000/product/${data._id}`)
      
            .then(function (response) {
             re_data = (response.data.data);

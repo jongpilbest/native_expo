@@ -21,25 +21,40 @@ const Lii_Com = function ({ data, gogo_delte, suro_parent }) {
   const [sura, setsura] = useState(data.productId.size);
   console.log(data, '엥?')
   const fifth_desig = function (data) {
-
-    var hh_index = data.findIndex(data.size.size);
-    setsize(data[hh_index]);
-    console.log('사이즈좀 확인', data[hh_index])
-
-
-
+    setsize(data)
 
   }
+  console.log('사이즈좀 확인', data.size.size)
 
   const cart = useSelector((state) => state.token.change);
 
   useEffect(() => {
-    /*
 
-    axios.get(`http://192.168.45.191:3000/product_Size/${data._id}`,
+
+    axios.get(`http://192.168.45.251:3000/product_Size/${data.productId.productId._id}`,
     )
       .then(function (response) {
-        setsura(response.data.data);
+
+        var data_quent = response.data.data;
+
+
+        var find_index = data_quent.findIndex((el) => el[0] == data.size.size);
+
+        setsura(response.data.data[find_index][1]);
+
+
+      }).catch(function (error) {
+
+        console.log(error);
+      });
+
+    /*
+    axios.get(`http://192.168.45.251:3000/product_Size/${data._id}`,
+    )
+      .then(function (response) {
+        ssetsize(response.data.data);
+        console.log(ssize, '뭐요')
+
 
       }).catch(function (error) {
 
@@ -47,13 +62,14 @@ const Lii_Com = function ({ data, gogo_delte, suro_parent }) {
       });
       */
 
+
   }, [cart]);
 
 
 
 
 
-  console.log('상품 리스트 데이터 확인', data)
+
 
 
   const coco_text = function () {

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useContext, useEffect, useRef } from "react"
 import { View, Image, TextInput, SafeAreaView, TouchableOpacity, Button, StyleSheet, Text, Dimensions } from "react-native"
 //import Main_Com from "./main_Com"
@@ -7,15 +5,15 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import { tokenAction } from "../redux/token";
-const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }) {
+const SSize_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }) {
 
  // 데이터에서 받은것과 지금 우리가 가진 사이즈와 비교좀..
 
- console.log('사이즈 데이터', ima, data[0], '지금데이터')
+ console.log('사이즈 데이터', ima)
  const desing_text = function () {
 
 
-  if (data[1] == 0 || data[0] > ima) {
+  if (data[1] == 0) {
 
    return (
     {
@@ -60,7 +58,7 @@ const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }
 
  const design_size = function () {
 
-  if (data[1] == 0 || data[0] > ima) {
+  if (data[1] == 0) {
    // st_p_cart(1);
 
    return (
@@ -118,7 +116,7 @@ const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }
   }>
    <TouchableOpacity onPress={() => {
 
-    if (data[0] <= ima) {
+    if (data[1] > 0) {
      console.log(data[0], '클릭되냐');
      goto_size(data[0])
     }
@@ -138,4 +136,4 @@ const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }
 }
 
 
-export default Size_Com;
+export default SSize_Com;

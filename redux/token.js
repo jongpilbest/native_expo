@@ -7,6 +7,7 @@ const initialstate = {
  like: [],
  cart_price: 0,
  change: 0,
+ jumon: []
 
 
 }
@@ -56,6 +57,10 @@ const tokenslice = createSlice({
   setlike: (state, action) => {
    state.like = action.payload
   },
+  setjumon: (state, action) => {
+   state.jumon = action.payload
+  },
+
   setprice: (state, action) => {
 
    state.cart_price = action.payload

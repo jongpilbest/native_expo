@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AntDesign } from '@expo/vector-icons';
 
 import { Entypo } from '@expo/vector-icons';
-
+import Jumon_list from "./Jumon_list";
 import { EvilIcons } from '@expo/vector-icons';
 import { tokenAction } from "../../redux/token";
 const Login = function ({ navigation, state }) {
@@ -17,7 +17,10 @@ const Login = function ({ navigation, state }) {
  const dispatch = useDispatch();
 
 
- const [token, settoken] = useState('');
+ const [token, settoken] = useState(false);
+ const jumonCart = useSelector((state) => state.token.jumon);
+ const [jjmon, setjjumon] = useState(null);
+ const [ss, setss] = useState(false);
 
 
  const tt = useSelector((state) => state.token.token);
@@ -25,13 +28,27 @@ const Login = function ({ navigation, state }) {
  useEffect(() => {
 
 
-  console.log(token, '뭐요', '갑자기', tt)
-  if (tt == '') {
-   settoken('')
+  if (tt == false) {
+   console.log('gg')
+   settoken(false);
+   setjjumon(jumonCart)
+
   }
+
+  if (tt.length > 0) {
+   setss(true);
+   console.log(tt, jumonCart, '토큰 바뀔때');
+   setjjumon(jumonCart)
+  }
+  //setjjumon(jumonCart.cart.items)
 
  }, [tt])
 
+
+ useEffect(() => {
+
+  console.log(token, '토큰')
+ }, [token])
 
 
  return (
@@ -42,7 +59,7 @@ const Login = function ({ navigation, state }) {
 
 
   }}>
-   {token == '' &&
+   {!tt &&
     <View style={{
      backgroundColor: 'white',
      width: Dimensions.get('window').width,
@@ -184,94 +201,110 @@ const Login = function ({ navigation, state }) {
 
       }}>
        <TouchableOpacity onPress={async () => {
-        const { data } = await axios.post('http://192.168.45.191:3000/signin', {
-         "email": title,
-         "password": title2
 
-        }, { withCredentials: true });
-        console.log(data)
-        if (data) {
-         dispatch(tokenAction.settoken(data.token))
-         settoken(data.token)
-         var change = [...data.user];
-         console.log(change)
-         var aa = [];
-         change.map((el, index) => {
-          el.size.map((ev, index) => {
-           var new_item = {
-            productId: el,
-            size: {
-             size: ev.size,
-             quantity: ev.quantity
-            }
+        try {
 
-           }
-           aa.push(new_item)
-          })
-         })
-         setTitle('')
+         const { data } = await axios.post('http://192.168.45.251:3000/signin', {
+          "email": title,
+          "password": title2
 
-         setTitle2('')
+         }, { withCredentials: true });
+         var new_Token = data.token;
 
-         dispatch(tokenAction.setprice(data.user_total))
-         dispatch(tokenAction.setname(data.user_info))
 
-         dispatch(tokenAction.setlike(data.like));
-         console.log(data.token, '토큰요')
-         const dd = await axios.post(`http://192.168.45.191:3000/Cart_quantity`, {}, {
-          headers: {
-           'Authorization': `Bearer ${data.token}`
-          }
-         })
 
-         if (dd) {
-          console.log('디디', dd);
+         if (new_Token) {
+          dispatch(tokenAction.setjumon(data.giro));
 
+
+          //setjjumon(data.giro.cart.items);
+
+          navigation.navigate('main');
+          settoken(data.token)
+          var t_token = data.token;
+
+          var change = [...data.user];
+          console.log(data, '초옹데이터')
           var aa = [];
-          var ima_price = data.user_total;
-
-
-          dd.data.item.map((el, index) => {
+          change.map((el, index) => {
            el.size.map((ev, index) => {
-
-            if (ev.opacity == 0.6) {
-             ima_price -= (el.productId.price * ev.quantity)
-
-            }
             var new_item = {
              productId: el,
              size: {
               size: ev.size,
-              quantity: ev.quantity,
-              opacity: ev.opacity
+              quantity: ev.quantity
              }
 
             }
             aa.push(new_item)
            })
           })
-          dispatch(tokenAction.setprice(ima_price))
-          dispatch(tokenAction.setuser(aa));
-          console.log(aa, '넣니? 왜 오류여')
+          setTitle('')
+
+          setTitle2('')
+          dispatch(tokenAction.settoken(data.token));
+          dispatch(tokenAction.setprice(data.user_total))
+          dispatch(tokenAction.setname(data.user_info))
+
+          dispatch(tokenAction.setlike(data.like));
+
+
+
+          const dd = await axios.post(`http://192.168.45.251:3000/Cart_quantity`, {}, {
+           headers: {
+            'Authorization': `Bearer ${t_token}`
+           }
+          })
+
+          if (dd) {
+
+
+           var aa = [];
+           var ima_price = data.user_total;
+
+
+           dd.data.item.map((el, index) => {
+            el.size.map((ev, index) => {
+
+             if (ev.opacity == 0.6) {
+              ima_price -= (el.productId.price * ev.quantity)
+
+             }
+             var new_item = {
+              productId: el,
+              size: {
+               size: ev.size,
+               quantity: ev.quantity,
+               opacity: ev.opacity
+              }
+
+             }
+             aa.push(new_item)
+            })
+           })
+           dispatch(tokenAction.setprice(ima_price))
+           dispatch(tokenAction.setuser(aa));
+
+
+          }
+
 
 
          }
+
+
+
+
+
+
         }
-        //성공시 then 실행
+        catch (e) {
 
 
+         sererror(e.response.data.error)
 
-
-
-
-
-
-
-
-
-        // navigation.navigate('My_page')}
+        }
        }
-
        }
        >
         <Text style={{
@@ -312,18 +345,12 @@ const Login = function ({ navigation, state }) {
     </View>
    }
    {
-    token != '' &&
-
+    ss &&
     <View style={{
      backgroundColor: 'white',
      marginRight: 10,
      width: Dimensions.get('window').width,
      height: Dimensions.get('window').height,
-
-
-     //alignContent: 'center'
-
-
     }}>
      <View style={{
       width: '100%',
@@ -369,7 +396,7 @@ const Login = function ({ navigation, state }) {
 
       }}>
        <TouchableOpacity onPress={() => {
-        dispatch(tokenAction.settoken(''));
+        dispatch(tokenAction.settoken(false));
         dispatch(tokenAction.setuser([]));
 
         dispatch(tokenAction.setprice(0))
@@ -497,89 +524,27 @@ const Login = function ({ navigation, state }) {
 
       </View>
       <ScrollView>
+       <View>
 
-       <View style={{
-        width: '95%',
-        height: Dimensions.get('window').height / 5,
-        backgroundColor: 'white',
-        alignSelf: 'center'
-       }}>
-
-        <View style={{
-         width: '100%',
-         flex: 1,
-         //backgroundColor: 'pink',
-         display: 'flex',
-         justifyContent: 'center'
-        }}>
-         <Text style={{
-          fontFamily: 'Rn',
-          fontWeight: 'bold',
-          fontSize: 12
-         }}>
-          주문일 1998 05 28
-         </Text>
-        </View>
-
-        <View style={{
-         width: '100%',
-         flex: 3,
-         backgroundColor: 'white',
-         borderWidth: 0.9,
-         display: 'flex',
-
-        }}>
-         <ScrollView horizontal={true}>
-          <View style={{
-           width: 80,
-           height: '80%',
-           backgroundColor: 'black',
-           alignSelf: 'center',
-           margin: 10
-          }}>
-           <Image
-
-            resizeMode="cover"
-            style={{
-             width: '100%',
-             height: '100%',
-             //opacity: 0.6,
-             //zIndex: 1,
+        {
 
 
-            }}
-            source={require('./28.png')}
-           />
-          </View>
-          <View style={{
-           width: 80,
-           height: '80%',
-           backgroundColor: 'black',
-           alignSelf: 'center',
-           margin: 10
-          }}>
-           <Image
+         jjmon.map((el, index) => {
+          return <Jumon_list
 
-            resizeMode="cover"
-            style={{
-             width: '100%',
-             height: '100%',
-             //opacity: 0.6,
-             //zIndex: 1,
+           data={el} key={index}>
+
+          </Jumon_list>
+         })
 
 
-            }}
-            source={require('./28.png')}
-           />
-          </View>
 
-          <Entypo name="dots-three-vertical" style={{
-           alignSelf: 'center',
-           display: 'flex'
-          }} size={25} color="black" />
-         </ScrollView>
 
-        </View>
+        }
+
+
+
+
        </View>
 
 
