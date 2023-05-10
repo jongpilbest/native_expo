@@ -27,7 +27,7 @@ const New_ = function ({ navigation, state }) {
         setffirst(1);
       }
       else {
-        axios.post('http://192.168.45.251:3000/signinname', {
+        axios.post('http://192.168.45.89:3000/signinname', {
           "name": title
         }, { withCredentials: true })
           //성공시 then 실행
@@ -45,7 +45,7 @@ const New_ = function ({ navigation, state }) {
       if (!title2) {
         setssecond(1);
       }
-      axios.post('http://192.168.45.251:3000/signinemail', {
+      axios.post('http://192.168.45.89:3000/signinemail', {
         "email": title2
       }, { withCredentials: true })
 
@@ -381,7 +381,7 @@ const New_ = function ({ navigation, state }) {
                 second == 0 &&
                 third == 0
               ) {
-                axios.post('http://192.168.45.251:3000/signup', {
+                axios.post('http://192.168.45.89:3000/signup', {
                   "name": title,
                   "email": title2,
                   "password": title3,

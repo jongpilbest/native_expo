@@ -25,7 +25,7 @@ const third = function ({ navigation }) {
 
 
   }}>
-  
+
   </View >
  )
 

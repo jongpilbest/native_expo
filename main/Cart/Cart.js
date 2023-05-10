@@ -308,14 +308,5 @@ const Cart = function ({ navigation }) {
  )
 
 }
-Cart.navigationOptions = () => {
- return {
-  title: <Text style={{
-   fontFamily: 'Rn',
-   textAlign: 'center',
-   fontSize: 15
-  }}> 장바구니 </Text>,
 
- };
-};
 export default Cart;

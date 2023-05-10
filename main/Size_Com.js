@@ -10,8 +10,8 @@ import { tokenAction } from "../redux/token";
 const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }) {
 
  // 데이터에서 받은것과 지금 우리가 가진 사이즈와 비교좀..
+ console.log(size, '사이즈뭐요', ima)
 
- console.log('사이즈 데이터', ima, data[0], '지금데이터')
  const desing_text = function () {
 
 
@@ -118,8 +118,10 @@ const Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }
   }>
    <TouchableOpacity onPress={() => {
 
-    if (data[0] <= ima) {
-     console.log(data[0], '클릭되냐');
+    var find_index = ima.findIndex((el) => el[0] == data[0])
+
+    if (data[1] <= ima[find_index][1]) {
+
      goto_size(data[0])
     }
 

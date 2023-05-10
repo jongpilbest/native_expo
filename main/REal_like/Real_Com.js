@@ -8,10 +8,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { EvilIcons } from '@expo/vector-icons';
 import { ScrollView } from "react-native-gesture-handler";
-import Size_Com from "../Size_Com";
+import SSize__Com from "../SSize__Com";
 import axios from "axios";
 import { tokenAction } from "../../redux/token";
-import SSize_Com from "../SSize__Com";
+import Real_Size_Com from "./Real_Size_Com";
 const Real_Com = function ({ data, gogo_delte }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
@@ -22,6 +22,17 @@ const Real_Com = function ({ data, gogo_delte }) {
     setsize(data);
 
   }
+
+
+
+
+
+
+
+
+
+
+
   const coco_text = function () {
     if (data.productId.product_name.length > 11) {
       console.log('여기좀')
@@ -104,11 +115,11 @@ const Real_Com = function ({ data, gogo_delte }) {
                   horizontal={true}>
                   {
                     data.productId.size.map((el, index) => {
-                      return <SSize_Com
+                      return <Real_Size_Com
 
                         size={size}
                         goto_size={(data) => fifth_desig(data)} key={index} data={el}>
-                      </SSize_Com>
+                      </Real_Size_Com>
                     })
 
                   }
@@ -131,7 +142,7 @@ const Real_Com = function ({ data, gogo_delte }) {
               }}>
               <TouchableOpacity onPress={() => {
                 console.log(data.productId._id, size, data.productId.price, '체크')
-                axios.post('http://192.168.45.251:3000/cart', {
+                axios.post('http://192.168.45.89:3000/cart', {
                   "_id": data.productId._id,
                   "size": size,
                   "price": data.productId.price
@@ -175,7 +186,7 @@ const Real_Com = function ({ data, gogo_delte }) {
 
                   });
 
-                axios.post('http://192.168.45.251:3000/delete_Like', {
+                axios.post('http://192.168.45.89:3000/delete_Like', {
                   "id": data.productId._id
                 }, {
                   headers: {

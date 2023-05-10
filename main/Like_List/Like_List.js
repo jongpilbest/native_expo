@@ -26,7 +26,7 @@ const Like_List = function ({ navigation }) {
 
   const [like, setlike] = useState([]);
   const go_del = function (data, size, price) {
-    axios.post('http://192.168.45.251:3000/delete_Cart', {
+    axios.post('http://192.168.45.89:3000/delete_Cart', {
       id: data,
       size: size,
       price: price
@@ -79,7 +79,7 @@ const Like_List = function ({ navigation }) {
 
   const server_suro = function (fir, sec, thir, four, six) {
 
-    axios.post('http://192.168.45.251:3000/suro', {
+    axios.post('http://192.168.45.89:3000/suro', {
       "_id": fir,
       "size": sec,//원래 데이터 사이즈
       "quantity": thir,
@@ -132,7 +132,7 @@ const Like_List = function ({ navigation }) {
 
   const opa_function = async function () {
 
-    await axios.post(`http://192.168.45.251:3000/Cart_quantity`, {}, {
+    await axios.post(`http://192.168.45.89:3000/Cart_quantity`, {}, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -356,7 +356,7 @@ const Like_List = function ({ navigation }) {
         }}>
           <TouchableOpacity onPress={async () => {
 
-            await axios.post(`http://192.168.45.251:3000/Jumon`, {
+            await axios.post(`http://192.168.45.89:3000/Jumon`, {
               "ddd": str_v,
               "hey": 1,
 
@@ -368,10 +368,27 @@ const Like_List = function ({ navigation }) {
             })
               .then(function (response) {
 
-                console.log(response.data, '이게 뭐요')
+                console.log(response.data, '이게 뭐요');
+
+
+
+                dispatch(tokenAction.setjumon(response.data));
+
+
+
+
+
+
+
+
+
+
+
+
+
                 dispatch(tokenAction.setuser([]))
                 dispatch(tokenAction.setprice(0));
-                dispatch(tokenAction.setchange(change + 1));
+                dispatch(tokenAction.setchange(1));
                 setprice(0);
 
 

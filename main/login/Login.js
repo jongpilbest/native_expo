@@ -1,5 +1,9 @@
 import React, { useState, useContext, useEffect, useRef } from "react"
-import { View, Image, TextInput, ScrollView, TouchableOpacity, Button, StyleSheet, Text, Dimensions } from "react-native"
+import {
+ View, Image, TextInput, TouchableOpacity, Button, StyleSheet, Text, Dimensions, SafeAreaView,
+ ScrollView,
+ StatusBar,
+} from "react-native"
 //import Main_Com from "./main_Com"
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux'
@@ -22,6 +26,8 @@ const Login = function ({ navigation, state }) {
  const [jjmon, setjjumon] = useState(null);
  const [ss, setss] = useState(false);
 
+ const cart = useSelector((state) => state.token.change);
+
 
  const tt = useSelector((state) => state.token.token);
  const name = useSelector((state) => state.token.name);
@@ -38,17 +44,21 @@ const Login = function ({ navigation, state }) {
   if (tt.length > 0) {
    setss(true);
    console.log(tt, jumonCart, '토큰 바뀔때');
-   setjjumon(jumonCart)
+   setjjumon(jumonCart);
+   console.log(jjmon, '주문')
   }
   //setjjumon(jumonCart.cart.items)
 
  }, [tt])
 
-
  useEffect(() => {
+  setjjumon(jumonCart);
 
-  console.log(token, '토큰')
- }, [token])
+ }, [jumonCart])
+
+
+
+
 
 
  return (
@@ -204,7 +214,7 @@ const Login = function ({ navigation, state }) {
 
         try {
 
-         const { data } = await axios.post('http://192.168.45.251:3000/signin', {
+         const { data } = await axios.post('http://192.168.45.89:3000/signin', {
           "email": title,
           "password": title2
 
@@ -250,7 +260,7 @@ const Login = function ({ navigation, state }) {
 
 
 
-          const dd = await axios.post(`http://192.168.45.251:3000/Cart_quantity`, {}, {
+          const dd = await axios.post(`http://192.168.45.89:3000/Cart_quantity`, {}, {
            headers: {
             'Authorization': `Bearer ${t_token}`
            }
@@ -523,33 +533,33 @@ const Login = function ({ navigation, state }) {
        </View>
 
       </View>
-      <ScrollView>
-       <View>
+      <SafeAreaView style={{
+       flex: 1,
+       paddingTop: StatusBar.currentHeight,
+      }}>
+       <ScrollView style={{
 
-        {
-
-
-         jjmon.map((el, index) => {
-          return <Jumon_list
-
-           data={el} key={index}>
-
-          </Jumon_list>
-         })
+       }}>
+        <View style={{
+         width: '100%',
+         height: Dimensions.get('window').height * 2
+        }}>
 
 
+         {
 
+          jjmon.map((el, index) => {
+           return <Jumon_list
 
-        }
+            data={el} key={index}>
 
+           </Jumon_list>
 
-
-
-       </View>
-
-
-      </ScrollView>
-
+          })
+         }
+        </View>
+       </ScrollView>
+      </SafeAreaView>
      </View>
 
     </View >

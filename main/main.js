@@ -38,7 +38,7 @@ const main = function ({ navigation }) {
     dispatch(tokenAction.settoken(''));
   }, [])
   const getmain_football = function () {
-    axios.get('http://192.168.45.251:3000/fifa', {
+    axios.get('http://192.168.45.89:3000/fifa', {
     })
       //성공시 then 실행
       .then(function (response) {
@@ -53,7 +53,7 @@ const main = function ({ navigation }) {
   }
 
   const getmain_winterl = function () {
-    axios.get('http://192.168.45.251:3000/winter', {
+    axios.get('http://192.168.45.89:3000/winter', {
 
     })
       //성공시 then 실행

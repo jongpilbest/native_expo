@@ -25,7 +25,7 @@ const second = function ({ navigation }) {
 
 
   }}>
-  
+
 
   </View >
  )

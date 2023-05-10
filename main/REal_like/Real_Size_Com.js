@@ -1,18 +1,17 @@
 
+
 import React, { useState, useContext, useEffect, useRef } from "react"
 import { View, Image, TextInput, SafeAreaView, TouchableOpacity, Button, StyleSheet, Text, Dimensions } from "react-native"
-//import Main_Com from "./main_Com"
 
-const SSize__Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }) {
+const Real_Size_Com = function ({ navigation, data, goto_size, size, ima, st_p_cart }) {
 
  // 데이터에서 받은것과 지금 우리가 가진 사이즈와 비교좀..
 
- console.log('사이즈 데이터', ima)
- console.log(data[0], '지금데이터')
+
  const desing_text = function () {
 
 
-  if (data[1] == 0 || data[0] > ima) {
+  if (data[1] == 0) {
 
    return (
     {
@@ -57,7 +56,7 @@ const SSize__Com = function ({ navigation, data, goto_size, size, ima, st_p_cart
 
  const design_size = function () {
 
-  if (data[1] == 0 || data[0] > ima) {
+  if (data[1] == 0) {
    // st_p_cart(1);
 
    return (
@@ -115,8 +114,10 @@ const SSize__Com = function ({ navigation, data, goto_size, size, ima, st_p_cart
   }>
    <TouchableOpacity onPress={() => {
 
-    if (data[0] <= ima) {
-     console.log(data[0], '클릭되냐');
+
+
+    if (data[1] > 0) {
+
      goto_size(data[0])
     }
 
@@ -135,4 +136,4 @@ const SSize__Com = function ({ navigation, data, goto_size, size, ima, st_p_cart
 }
 
 
-export default SSize__Com;
+export default Real_Size_Com;

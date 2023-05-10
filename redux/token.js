@@ -24,7 +24,7 @@ const tokenslice = createSlice({
    //state.name = action.payload.name;
   },
   setchange: (state, action) => {
-   state.change = action.payload
+   state.change += action.payload
   },
   deleteuser: (state, action) => {
    console.log(action.payload.id, action.payload.size);

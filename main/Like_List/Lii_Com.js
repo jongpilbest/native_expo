@@ -31,7 +31,7 @@ const Lii_Com = function ({ data, gogo_delte, suro_parent }) {
   useEffect(() => {
 
 
-    axios.get(`http://192.168.45.251:3000/product_Size/${data.productId.productId._id}`,
+    axios.get(`http://192.168.45.89:3000/product_Size/${data.productId.productId._id}`,
     )
       .then(function (response) {
 
@@ -49,7 +49,7 @@ const Lii_Com = function ({ data, gogo_delte, suro_parent }) {
       });
 
     /*
-    axios.get(`http://192.168.45.251:3000/product_Size/${data._id}`,
+    axios.get(`http://192.168.45.89:3000/product_Size/${data._id}`,
     )
       .then(function (response) {
         ssetsize(response.data.data);
