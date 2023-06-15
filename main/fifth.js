@@ -31,7 +31,7 @@ const fifth = function ({ navigation }) {
   const [contentVerticalOffset, setContentVerticalOffset] = useState(0);
   useEffect(() => {
     console.log(data);
-    axios.get(`http://192.168.45.89:3000/like_total_lost/${data._id}`, {
+    axios.get(`http://192.168.45.236:3000/like_total_lost/${data._id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -617,7 +617,7 @@ const fifth = function ({ navigation }) {
                 setModalVisible(!modalVisible)
 
 
-                axios.post('http://192.168.45.89:3000/cart', {
+                axios.post('http://192.168.45.236:3000/cart', {
                   "_id": data._id,
                   "size": size[0]
                 },

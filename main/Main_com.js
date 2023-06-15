@@ -14,6 +14,7 @@ const Main_com = function ({ navigation, total }) {
    return total.product_name.substr(0, 10) + "..."
   }
   else {
+
    return total.product_name
   }
 

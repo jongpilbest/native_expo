@@ -25,7 +25,7 @@ const New_fifth = function ({ navigation }) {
   useEffect(() => {
 
 
-    axios.get(`http://192.168.45.89:3000/product_Size/${data._id}`,
+    axios.get(`http://192.168.45.236:3000/product_Size/${data._id}`,
     )
       .then(function (response) {
         ssetsize(response.data.data);
@@ -60,7 +60,7 @@ const New_fifth = function ({ navigation }) {
 
 
   useEffect(() => {
-    axios.get(`http://192.168.45.89:3000/like_total_lost/${data._id}`, {
+    axios.get(`http://192.168.45.236:3000/like_total_lost/${data._id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -88,7 +88,7 @@ const New_fifth = function ({ navigation }) {
 
     console.log('검은색?');
 
-    axios.post('http://192.168.45.89:3000/like', {
+    axios.post('http://192.168.45.236:3000/like', {
       id: data._id
     }, {
       headers: {
@@ -140,7 +140,7 @@ const New_fifth = function ({ navigation }) {
 
         setModalVisible(!modalVisible)
 
-        axios.post('http://192.168.45.89:3000/cart', {
+        axios.post('http://192.168.45.236:3000/cart', {
           "_id": data._id,
           "size": size,
           "price": data.price

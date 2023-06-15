@@ -23,7 +23,7 @@ const Cate_Com = function ({ navigation, data }) {
   }}>
    <TouchableOpacity onPress={() => {
     //data.name
-    axios.get(`http://192.168.45.89:3000/get_categori/${data.search}`,
+    axios.get(`http://192.168.45.236:3000/get_categori/${data.search}`,
 
      { withCredentials: true })
      //성공시 then 실행

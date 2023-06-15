@@ -26,7 +26,7 @@ const Top_bo = function ({ navigation }) {
   const goto_shose = function () {
 
 
-    axios.get('http://192.168.45.89:3000/woman_shoes', {
+    axios.get('http://192.168.45.236:3000/woman_shoes', {
 
     })
       //성공시 then 실행
@@ -45,7 +45,7 @@ const Top_bo = function ({ navigation }) {
   const goto_suppl = function () {
 
 
-    axios.get('http://192.168.45.89:3000/woman_apparel', {
+    axios.get('http://192.168.45.236:3000/woman_apparel', {
 
     })
       //성공시 then 실행
@@ -64,7 +64,7 @@ const Top_bo = function ({ navigation }) {
   const goto_apply = function () {
 
 
-    axios.get('http://192.168.45.89:3000/woman_sup', {
+    axios.get('http://192.168.45.236:3000/woman_sup', {
 
     })
       //성공시 then 실행
@@ -93,7 +93,10 @@ const Top_bo = function ({ navigation }) {
 
 
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+    >
       <View style={{
         backgroundColor: 'white',
         width: Dimensions.get('window').width,
@@ -204,7 +207,7 @@ const Top_bo = function ({ navigation }) {
               }}>
                 <TouchableOpacity onPress={() => {
 
-                  axios.get('http://192.168.45.89:3000/woman_shoe_cegori',
+                  axios.get('http://192.168.45.236:3000/woman_shoe_cegori',
 
                     { withCredentials: true })
                     //성공시 then 실행
@@ -233,7 +236,7 @@ const Top_bo = function ({ navigation }) {
 
                 <TouchableOpacity onPress={() => {
 
-                  axios.get('http://192.168.45.89:3000/woman_apparel_cegori',
+                  axios.get('http://192.168.45.236:3000/woman_apparel_cegori',
 
                     { withCredentials: true })
                     //성공시 then 실행
@@ -260,7 +263,7 @@ const Top_bo = function ({ navigation }) {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
 
-                  axios.get('http://192.168.45.89:3000/woman_yo',
+                  axios.get('http://192.168.45.236:3000/woman_yo',
 
                     { withCredentials: true })
                     //성공시 then 실행
@@ -501,7 +504,7 @@ Top_bo.navigationOptions = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => {
-          axios.get('http://192.168.45.89:3000/add_product',
+          axios.get('http://192.168.45.236:3000/add_product',
 
             { withCredentials: true })
             //성공시 then 실행

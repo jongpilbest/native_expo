@@ -60,41 +60,7 @@ const REal_like = function ({ navigation }) {
     }}>
 
 
-     <View style={{
-      width: '30%',
-      height: 30,
-      marginLeft: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      // backgroundColor: 'pink',
-      flexDirection: 'row',
-      marginTop: 'auto',
-      marginBottom: 'auto',
 
-     }}>
-      <Text
-       style={{
-        fontFamily: 'Rn',
-        fontSize: 14,
-
-        textDecorationLine: 'underline',
-
-       }}
-      > 세일</Text>
-      <TouchableOpacity onPress={() => {
-       navigation.navigate('Top_men')
-      }}>
-       <Text
-        style={{
-         fontFamily: 'Rn',
-         fontSize: 14
-        }}
-       > 품절</Text>
-
-      </TouchableOpacity>
-
-
-     </View>
 
 
     </View>

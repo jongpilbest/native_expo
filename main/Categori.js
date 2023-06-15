@@ -14,7 +14,18 @@ const Categori = function ({ navigation }) {
  const data = navigation.getParam('data');
  console.log('카테고리', data)
  return (
-  <ScrollView>
+
+  <View style={{
+   backgroundColor: 'white',
+   flexDirection: "row",
+   width: Dimensions.get('window').width,
+   height: Dimensions.get('window').height,
+
+
+   flexWrap: "wrap",
+   display: 'flex'
+
+  }}>
    <View style={{
     backgroundColor: 'white',
     flexDirection: "row",
@@ -24,26 +35,15 @@ const Categori = function ({ navigation }) {
 
     flexWrap: "wrap",
     display: 'flex'
-
    }}>
-    <View style={{
-     backgroundColor: 'white',
-     flexDirection: "row",
-     width: Dimensions.get('window').width,
-     height: Dimensions.get('window').height,
+    {
+     data.map((el, index) => {
+      return <Cate_Com navigation={navigation} data={el} key={index}></Cate_Com>
+     })
+    }
+   </View >
+  </View>
 
-
-     flexWrap: "wrap",
-     display: 'flex'
-    }}>
-     {
-      data.map((el, index) => {
-       return <Cate_Com navigation={navigation} data={el} key={index}></Cate_Com>
-      })
-     }
-    </View >
-   </View>
-  </ScrollView >
 
  )
 

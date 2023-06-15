@@ -11,29 +11,29 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const second = function ({ navigation }) {
 
- return (
+  return (
 
-  <View style={{
-   backgroundColor: '#F2F5F6',
-   marginRight: 10,
-   width: Dimensions.get('window').width,
-   height: Dimensions.get('window').height,
-   borderRadius: 5,
-   marginTop: 10,
-   opacity: 0.9,
-   //alignContent: 'center'
-
-
-  }}>
+    <View style={{
+      backgroundColor: '#F2F5F6',
+      marginRight: 10,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+      borderRadius: 5,
+      marginTop: 10,
+      opacity: 0.9,
+      //alignContent: 'center'
 
 
-  </View >
- )
+    }}>
+
+
+    </View >
+  )
 
 }
 second.navigationOptions = () => {
- return {
-  header: () => false,
- };
+  return {
+    header: () => false,
+  };
 };
 export default second;

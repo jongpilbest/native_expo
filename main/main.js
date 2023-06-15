@@ -38,7 +38,7 @@ const main = function ({ navigation }) {
     dispatch(tokenAction.settoken(''));
   }, [])
   const getmain_football = function () {
-    axios.get('http://192.168.45.89:3000/fifa', {
+    axios.get('http://192.168.45.236:3000/fifa', {
     })
       //성공시 then 실행
       .then(function (response) {
@@ -53,7 +53,7 @@ const main = function ({ navigation }) {
   }
 
   const getmain_winterl = function () {
-    axios.get('http://192.168.45.89:3000/winter', {
+    axios.get('http://192.168.45.236:3000/winter', {
 
     })
       //성공시 then 실행
@@ -88,7 +88,7 @@ const main = function ({ navigation }) {
 
   const autoScroll = function () {
     console.log(contentVerticalOffset, hee)
-    if (contentVerticalOffset > 50 && contentVerticalOffset < 100) {
+    if (contentVerticalOffset > Dimensions.get('window').height / 10 && contentVerticalOffset < Dimensions.get('window').height / 6) {
       ref.scrollTo({ x: 0, y: hee, animated: false })
 
     }
@@ -110,6 +110,13 @@ const main = function ({ navigation }) {
 
     }}>
       <ScrollView
+
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+
+
+
+
         ref={(ref) => {
           setRef(ref);
         }}

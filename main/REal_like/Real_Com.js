@@ -142,7 +142,7 @@ const Real_Com = function ({ data, gogo_delte }) {
               }}>
               <TouchableOpacity onPress={() => {
                 console.log(data.productId._id, size, data.productId.price, '체크')
-                axios.post('http://192.168.45.89:3000/cart', {
+                axios.post('http://192.168.45.236:3000/cart', {
                   "_id": data.productId._id,
                   "size": size,
                   "price": data.productId.price
@@ -186,23 +186,7 @@ const Real_Com = function ({ data, gogo_delte }) {
 
                   });
 
-                axios.post('http://192.168.45.89:3000/delete_Like', {
-                  "id": data.productId._id
-                }, {
-                  headers: {
-                    'Authorization': `Bearer ${token}`
-                  }
-                })
 
-                  .then(function (response) {
-                    console.log(response.data.data)
-
-                    dispatch(tokenAction.setlike(response.data.data))
-
-                  }).catch(function (error) {
-                    console.log('error??', error)
-                    console.log(error.response.data);
-                  });
 
 
               }}>
@@ -381,7 +365,50 @@ const Real_Com = function ({ data, gogo_delte }) {
               </View>
 
             </TouchableOpacity>
+
+            <View style={{
+              width: '95%',
+              height: 20,
+              marginTop: 10,
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'center'
+            }}>
+              <TouchableOpacity onPress={() => {
+
+                axios.post('http://192.168.45.236:3000/delete_Like', {
+                  "id": data.productId._id
+                }, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                })
+
+                  .then(function (response) {
+                    console.log(response.data.data)
+
+                    dispatch(tokenAction.setlike(response.data.data))
+
+                  }).catch(function (error) {
+                    console.log('error??', error)
+                    console.log(error.response.data);
+                  });
+
+
+
+
+
+              }}>
+
+
+                <Feather style={{
+
+                }} name="x" size={15} color="black" />
+              </TouchableOpacity>
+
+            </View>
           </View>
+
         </View>
       </View>
     </View >

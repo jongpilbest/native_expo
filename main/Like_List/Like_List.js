@@ -26,7 +26,7 @@ const Like_List = function ({ navigation }) {
 
   const [like, setlike] = useState([]);
   const go_del = function (data, size, price) {
-    axios.post('http://192.168.45.89:3000/delete_Cart', {
+    axios.post('http://192.168.45.236:3000/delete_Cart', {
       id: data,
       size: size,
       price: price
@@ -79,7 +79,7 @@ const Like_List = function ({ navigation }) {
 
   const server_suro = function (fir, sec, thir, four, six) {
 
-    axios.post('http://192.168.45.89:3000/suro', {
+    axios.post('http://192.168.45.236:3000/suro', {
       "_id": fir,
       "size": sec,//원래 데이터 사이즈
       "quantity": thir,
@@ -132,7 +132,7 @@ const Like_List = function ({ navigation }) {
 
   const opa_function = async function () {
 
-    await axios.post(`http://192.168.45.89:3000/Cart_quantity`, {}, {
+    await axios.post(`http://192.168.45.236:3000/Cart_quantity`, {}, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -229,41 +229,7 @@ const Like_List = function ({ navigation }) {
         }}>
 
 
-          <View style={{
-            width: '30%',
-            height: 30,
-            marginLeft: 10,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            // backgroundColor: 'pink',
-            flexDirection: 'row',
-            marginTop: 'auto',
-            marginBottom: 'auto',
 
-          }}>
-            <Text
-              style={{
-                fontFamily: 'Rn',
-                fontSize: 14,
-
-                textDecorationLine: 'underline',
-
-              }}
-            > 세일</Text>
-            <TouchableOpacity onPress={() => {
-              navigation.navigate('Top_men')
-            }}>
-              <Text
-                style={{
-                  fontFamily: 'Rn',
-                  fontSize: 14
-                }}
-              > 품절</Text>
-
-            </TouchableOpacity>
-
-
-          </View>
 
 
         </View>
@@ -356,7 +322,7 @@ const Like_List = function ({ navigation }) {
         }}>
           <TouchableOpacity onPress={async () => {
 
-            await axios.post(`http://192.168.45.89:3000/Jumon`, {
+            await axios.post(`http://192.168.45.236:3000/Jumon`, {
               "ddd": str_v,
               "hey": 1,
 

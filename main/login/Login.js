@@ -214,7 +214,7 @@ const Login = function ({ navigation, state }) {
 
         try {
 
-         const { data } = await axios.post('http://192.168.45.89:3000/signin', {
+         const { data } = await axios.post('http://192.168.45.236:3000/signin', {
           "email": title,
           "password": title2
 
@@ -260,7 +260,7 @@ const Login = function ({ navigation, state }) {
 
 
 
-          const dd = await axios.post(`http://192.168.45.89:3000/Cart_quantity`, {}, {
+          const dd = await axios.post(`http://192.168.45.236:3000/Cart_quantity`, {}, {
            headers: {
             'Authorization': `Bearer ${t_token}`
            }
